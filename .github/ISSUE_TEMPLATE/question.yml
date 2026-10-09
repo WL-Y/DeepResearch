@@ -1,0 +1,24 @@
+name: Question / Support
+description: 询问安装、配置或使用问题
+title: "[Question] "
+labels: ["question"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: 问题
+      description: 请说明目标、当前行为和已经尝试的步骤。
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 运行环境
+      description: 操作系统、Python/Node.js 版本及相关非敏感配置。
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 提交确认
+      options:
+        - label: 我确认内容不含 API Key、令牌或私人数据。
+          required: true

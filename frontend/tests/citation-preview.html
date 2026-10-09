@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>上标引用预览（测试数据）</title></head>
+<body>
+<div id="app"></div>
+<script type="module">
+import { createApp, h } from 'vue'
+import ResearchModal from '../src/components/ResearchModal.vue'
+import '../src/style.css'
+
+// Manual, local-only UI fixture. Does not create research or call a model.
+const cite = n => `[${n}](http://localhost:5174/?citation-source=${n} "citation")`
+const paragraphs = Array.from({ length: 5 }, (_, i) => {
+  const first = i * 3 + 1
+  return `这是第 ${i + 1} 段排版测试文字，不代表真实研究结论。右上角数字应保持清晰，不撑高行间距；连续引用与双位数编号均应可点击。${cite(first)}${cite(first + 1)}${cite(first + 2)}`
+})
+const sources = Array.from({ length: 15 }, (_, i) => `${i + 1}. [测试来源 ${i + 1}](http://localhost:5174/?citation-source=${i + 1}) — 仅用于验证链接对应关系`)
+const report = `# 上标引用样式预览\n\n## 执行摘要\n\n${paragraphs.join('\n\n')}\n\n## 核心来源\n\n${sources.join('\n')}`
+createApp({ render: () => h(ResearchModal, {
+  isOpen: true, topic: '上标引用预览（测试数据）', isLoading: false,
+  progress: 100, progressText: '本地样式预览', tasks: [], report,
+  error: null,
+}) }).mount('#app')
+</script>
+</body>
+</html>

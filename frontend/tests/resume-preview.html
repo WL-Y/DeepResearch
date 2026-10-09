@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>继续研究预览（测试数据）</title></head>
+<body><div id="app"></div>
+<script type="module">
+import { createApp, h, reactive } from 'vue'
+import ResearchModal from '../src/components/ResearchModal.vue'
+import '../src/style.css'
+// UI-only fixture: no database writes, network research or model calls.
+const state = reactive({ isOpen: true, topic: '中断恢复功能预览（测试数据）', isLoading: false,
+  progress: 45, progressText: '研究中断', report: '',
+  error: '示例：模型请求超时，第一项任务的结果已保存。',
+  canResume: true, isResuming: false,
+  tasks: [{id: 1, title: '已保存的证据整理', status: 'completed'}, {id: 2, title: '待继续的对照分析', status: 'failed'}],
+})
+const resume = async () => {
+  if (state.isResuming) return
+  state.isResuming = true
+  await new Promise(resolve => setTimeout(resolve, 500))
+  state.error = null
+  state.isResuming = false
+  state.canResume = false
+  state.isLoading = true
+  state.tasks[1].status = 'running'
+  state.progressText = '正在继续：待继续的对照分析（仅 UI 演示）'
+}
+createApp({render: () => h(ResearchModal, {...state, onResume: resume})}).mount('#app')
+</script></body></html>

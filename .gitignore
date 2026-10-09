@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Conda
+deep-research/
+
+# Cache
+backend/cache/
+backend/workspace/
+
+# Environment and secrets (keep templates)
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.*.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Node
+node_modules/
+.npm
+*.tgz
+
+# Build
+frontend/dist/
+
+# User-provided reference material, not part of the public source tree
+/文章全文抓取技术文档.md
